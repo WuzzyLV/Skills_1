@@ -1,0 +1,95 @@
+{
+  "lines": [
+    {
+      "name": "21",
+      "type": "bus",
+      "id" : 1,
+      "stops": [
+        {"name": "Valmieras iela", "id": 101},
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Avotu iela", "id": 2},
+        {"name": "A.Čaka iela", "id": 3},
+        {"name": "K.Barona iela", "id": 4},
+        {"name": "Lāčplēša iela", "id": 5},
+        {"name": "Brīvības bulvāris", "id": 6},
+        {"name": "Medicīnas muzejs", "id": 7},
+        {"name": "Dzirnavu iela", "id": 8},
+        {"name": "Pētersalas iela", "id": 9}
+      ]
+    },
+    {
+      "name": "2",
+      "type": "tram",
+      "id" : 2,
+      "stops": [
+        {"name": "Imanta", "id": 10},
+        {"name": "Anniņmuižas bulvāris", "id": 11},
+        {"name": "Kleistu iela", "id": 12},
+        {"name": "Imantas iela", "id": 13},
+        {"name": "K.Barona iela", "id": 4},
+        {"name": "Jūrmalas iela", "id": 15},
+        {"name": "Botāniskais dārzs", "id": 16},
+        {"name": "Baldones iela", "id": 17},
+        {"name": "Mārtiņa iela", "id": 18},
+        {"name": "Nometņu iela", "id": 19},
+        {"name": "Grēcinieku iela", "id": 20},
+        {"name": "Prāgas iela", "id": 21},
+        {"name": "Merķeļa iela", "id": 22},
+        {"name": "Dzirnavu iela", "id": 8},
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Tallinas iela", "id": 25},
+        {"name": "Sporta nams \"Daugava\"", "id": 26},
+        {"name": "VEF", "id": 27},
+        {"name": "Lēdmanes iela", "id": 28},
+        {"name": "Džutas iela", "id": 29},
+        {"name": "Tirzas iela", "id": 20},
+        {"name": "Krustabaznīcas iela", "id": 20},
+        {"name": "Mārkalnes iela", "id": 20},
+        {"name": "Pērnavas iela", "id": 20}
+      ]
+    },
+    {
+      "name": "20",
+      "type": "bus",
+      "id" : 3,
+      "stops": [
+        {"name": "Brīvības iela", "id": 30},
+        {"name": "E.Melngaiļa iela", "id": 31},
+        {"name": "Nacionālais teātris", "id": 32},
+        {"name": "Elizabetes iela", "id": 33},
+        {"name": "Ķīpsala", "id": 34},
+        {"name": "Baložu iela", "id": 35},
+        {"name": "Melnsila iela", "id": 36},
+        {"name": "Āgenskalna iela", "id": 37},
+        {"name": "Kuldīgas iela", "id": 38},
+        {"name": "Nometņu iela", "id": 19},
+        {"name": "Grēcinieku iela", "id": 20},
+        {"name": "Botāniskais dārzs", "id": 41},
+        {"name": "Sēlpils iela", "id": 42},
+        {"name": "Slokas iela", "id": 43},
+        {"name": "Buļļu iela", "id": 44},
+        {"name": "Cementa iela", "id": 45},
+        {"name": "Sporta nams \"Pārdaugava\"", "id": 46},
+        {"name": "Vaidelotes iela", "id": 47},
+        {"name": "Spilves iela", "id": 48}
+      ]
+    },
+    {
+      "name": "1",
+      "type": "bus",
+      "id" : 1,
+      "stops": [
+        {"name": "Ogres iela", "id": 51},
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Amatieru iela", "id": 52},
+        {"name": "Grēcinieku iela", "id": 20},
+        {"name": "Dzirnavu iela", "id": 54},
+        {"name": "Māzā iela", "id": 55},
+        {"name": "Laravel bulvāris", "id": 65},
+        {"name": "Mazā iela", "id": 71},
+        {"name": "Baltās baznīcas iela", "id": 82},
+        {"name": "Hospitāļu iela", "id": 99}
+      ]
+    }
+  ]
+}
