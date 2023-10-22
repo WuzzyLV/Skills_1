@@ -1,0 +1,34 @@
+{
+  "lines": [
+    {
+      "name": "1",
+      "type": "bus",
+      "id": 1,
+      "stops": [
+        {"name": "Valmieras iela", "id": 1},
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Nometņu iela", "id": 3}
+      ]
+    },
+    {
+      "name": "2",
+      "type": "tram",
+      "id": 2,
+      "stops": [
+        {"name": "Imanta", "id": 4},
+        {"name": "Anniņmuižas bulvāris", "id": 2},
+        {"name": "Ģertrūdes iela", "id": 5}
+      ]
+    },
+    {
+      "name": "3",
+      "type": "tram",
+      "id": 3,
+      "stops": [
+        {"name": "Imanta", "id": 1},
+        {"name": "Anniņmuižas bulvāris", "id": 6},
+        {"name": "Ģertrūdes iela", "id": 7}
+      ]
+    }
+  ]
+}

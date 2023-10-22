@@ -1,6 +1,6 @@
 package me.wuzzyxy.skills_1.routes.lines;
 
-public class Stop {
+public class Stop implements Cloneable{
     private String name;
     private int id;
 
@@ -25,5 +25,14 @@ public class Stop {
             return stop.getId() == id;
         }
         return false;
+    }
+
+    @Override
+    protected Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
