@@ -120,8 +120,9 @@ public class RouteSystem {
             if (line == null || !line.getStops().contains(nextStop)) {
                 for (Line l : graph.get(currentStop.getId())) {
                     if (l.getStops().contains(nextStop)) {
+                        System.out.println(l.getStops().toString());
                         Line newLine = (Line) l.clone();
-                        for (int j = l.getStops().indexOf(currentStop); j < l.getStops().indexOf(nextStop); j++) {
+                        for (int j = l.getStops().indexOf(currentStop); j < l.getStops().indexOf(nextStop); j++) {// check if num bigger than other then go down if not up and then should be right order
                             newLine.addStop(l.getStops().get(j));
                         }
                         finalRoute.addLine(newLine);

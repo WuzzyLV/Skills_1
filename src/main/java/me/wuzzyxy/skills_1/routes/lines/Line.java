@@ -55,7 +55,7 @@ public class Line implements Cloneable{
     public Object clone()  {
         try {
             Line line = (Line) super.clone();
-            line.stops = new ArrayList<>(stops);
+            line.stops = new ArrayList<>();
             return line;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
