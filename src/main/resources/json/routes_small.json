@@ -1,7 +1,7 @@
 {
   "lines": [
     {
-      "name": "1",
+      "name": "Pirmais autobuss",
       "type": "bus",
       "id": 1,
       "stops": [
@@ -11,23 +11,23 @@
       ]
     },
     {
-      "name": "2",
+      "name": "Otrais tramvajs",
       "type": "tram",
       "id": 2,
       "stops": [
         {"name": "Imanta", "id": 4},
-        {"name": "Anniņmuižas bulvāris", "id": 2},
-        {"name": "Ģertrūdes iela", "id": 5}
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Kreisā iela", "id": 5}
       ]
     },
     {
-      "name": "3",
+      "name": "Trešais tramvajs",
       "type": "tram",
       "id": 3,
       "stops": [
-        {"name": "Imanta", "id": 1},
-        {"name": "Anniņmuižas bulvāris", "id": 6},
-        {"name": "Ģertrūdes iela", "id": 7}
+        {"name": "Valmieras iela", "id": 1},
+        {"name": "Muižnieka iela", "id": 6},
+        {"name": "Anniņmuižas bulvāris", "id": 7}
       ]
     }
   ]

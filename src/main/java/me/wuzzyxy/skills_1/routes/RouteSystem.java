@@ -1,11 +1,17 @@
 package me.wuzzyxy.skills_1.routes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.wuzzyxy.skills_1.routes.lines.Line;
 import me.wuzzyxy.skills_1.routes.lines.Lines;
 import me.wuzzyxy.skills_1.routes.lines.Stop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -18,11 +24,12 @@ public class RouteSystem {
 
     private Lines lines;
     private Map<Integer, List<Line>> graph;
+    private List<Stop> allStops;
 
     public RouteSystem() {
         try {
             lines = new ObjectMapper().readValue(
-                    ResourceUtils.getFile("classpath:routes1.json"),
+                    new ClassPathResource("json/routes_small.json").getInputStream(),
                     Lines.class
             );
         } catch (Exception e) {
@@ -30,9 +37,16 @@ public class RouteSystem {
         }
 
         graph = new HashMap<>();
+        allStops = new ArrayList<>();
         for (Line line : lines.getLines()) {
             for (int i = 0; i < line.getStops().size(); i++) {
                 Stop stop = line.getStops().get(i);
+
+                //fill allstops
+                if (!allStops.contains(stop)) {
+                    allStops.add(stop);
+                }
+                //fill graph
                 if (!graph.containsKey(stop.getId())) {
                     ArrayList<Line> linesList = new ArrayList<>();
                     linesList.add(line);
@@ -42,18 +56,8 @@ public class RouteSystem {
                 if (!graph.get(stop.getId()).contains(line)) {
                     graph.get(stop.getId()).add(line);
                 }
+
             }
-        }
-        //print stopLinesMap
-        for (Map.Entry<Integer, List<Line>> entry : graph.entrySet()) {
-            logger.info(entry.getKey() + " " + entry.getValue());
-        }
-
-        Lines route = calculateTravel(lines.getStopByID(7), lines.getStopByID(3));
-
-        System.out.println(route.toString());
-        for (Line line : route.getLines()) {
-            System.out.println(line.getStops().toString());
         }
 
     }
@@ -67,29 +71,19 @@ public class RouteSystem {
         Queue<Stop> queue = new LinkedList<>();
         queue.add(start);
         Map<Stop, Stop> parents = new HashMap<>();
-        logger.info("BFS");
         while (!queue.isEmpty()) {
             Stop current = queue.poll();
             if (current.equals(end)) {
                 break;
             }
             for (Line line : graph.get(current.getId())) {
-                logger.info("line: " + line.getId());
                 for (Stop stop : line.getStops()) {
-                    logger.info("stop: " + stop.getId());
                     if (!parents.containsKey(stop)) {
                         parents.put(stop, current);
                         queue.add(stop);
-                        logger.info("added " + current.getId() + ":" + stop.getId());
                     }
                 }
             }
-        }
-
-        //print parents
-        logger.info("parents:");
-        for (Map.Entry<Stop, Stop> entry : parents.entrySet()) {
-            logger.info(entry.getKey().getId() + " " + entry.getValue().getId());
         }
 
         if (!parents.containsKey(end)) {
@@ -106,12 +100,6 @@ public class RouteSystem {
 
         Collections.reverse(stops);
 
-        //print stops
-        logger.info("stops:");
-        for (Stop stop : stops) {
-            logger.info(String.valueOf(stop.getId()));
-        }
-
         Lines finalRoute = new Lines();
         Line line = null;
         for (int i = 0; i < stops.size() - 1; i++) {
@@ -120,10 +108,15 @@ public class RouteSystem {
             if (line == null || !line.getStops().contains(nextStop)) {
                 for (Line l : graph.get(currentStop.getId())) {
                     if (l.getStops().contains(nextStop)) {
-                        System.out.println(l.getStops().toString());
                         Line newLine = (Line) l.clone();
-                        for (int j = l.getStops().indexOf(currentStop); j < l.getStops().indexOf(nextStop); j++) {// check if num bigger than other then go down if not up and then should be right order
-                            newLine.addStop(l.getStops().get(j));
+                        if (l.getStops().indexOf(currentStop) > l.getStops().indexOf(nextStop)){
+                            for (int j = l.getStops().indexOf(currentStop); j >= l.getStops().indexOf(nextStop); j--) {
+                                newLine.addStop(l.getStops().get(j));
+                            }
+                        } else {
+                            for (int j = l.getStops().indexOf(currentStop); j <= l.getStops().indexOf(nextStop); j++) {
+                                newLine.addStop(l.getStops().get(j));
+                            }
                         }
                         finalRoute.addLine(newLine);
                     }
@@ -132,6 +125,13 @@ public class RouteSystem {
         }
         return finalRoute;
 
+    }
+
+
+//    GETTERS SETTERS
+
+    public List<Stop> getAllStops() {
+        return allStops;
     }
 
 
