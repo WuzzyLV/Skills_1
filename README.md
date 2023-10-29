@@ -1,5 +1,5 @@
 # Skills_1 Backend [Hosted Here](http://66.11.123.158:8080/)
-## [Frontend Prototype](https://wuzzylv.github.io/Skills_1-frontend/)
+## [Frontend Prototype](https://github.com/WuzzyLV/Skills_1-frontend)
 ## [Path finding algorithm](https://github.com/WuzzyLV/Skills_1/blob/ce1c840a490af08f4e820a29be69a8fefc26bc12/src/main/java/me/wuzzyxy/skills_1/routes/RouteSystem.java#L70C24-L70C24)
 Needs much improvement but works :)
 
