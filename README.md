@@ -77,3 +77,42 @@ example: `/route/1/4`
 	]
 }
 ```
+
+
+### Default routes
+```json
+{
+  "lines": [
+    {
+      "name": "Pirmais autobuss",
+      "type": "bus",
+      "id": 1,
+      "stops": [
+        {"name": "Valmieras iela", "id": 1},
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Nometņu iela", "id": 3}
+      ]
+    },
+    {
+      "name": "Otrais tramvajs",
+      "type": "tram",
+      "id": 2,
+      "stops": [
+        {"name": "Imanta", "id": 4},
+        {"name": "Ģertrūdes iela", "id": 2},
+        {"name": "Kreisā iela", "id": 5}
+      ]
+    },
+    {
+      "name": "Trešais tramvajs",
+      "type": "tram",
+      "id": 3,
+      "stops": [
+        {"name": "Valmieras iela", "id": 1},
+        {"name": "Muižnieka iela", "id": 6},
+        {"name": "Anniņmuižas bulvāris", "id": 7}
+      ]
+    }
+  ]
+}
+```

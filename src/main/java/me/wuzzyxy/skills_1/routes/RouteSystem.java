@@ -1,21 +1,13 @@
 package me.wuzzyxy.skills_1.routes;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.wuzzyxy.skills_1.routes.lines.Line;
 import me.wuzzyxy.skills_1.routes.lines.Lines;
 import me.wuzzyxy.skills_1.routes.lines.Stop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class RouteSystem {
@@ -71,6 +63,7 @@ public class RouteSystem {
         Queue<Stop> queue = new LinkedList<>();
         queue.add(start);
         Map<Stop, Stop> parents = new HashMap<>();
+        //Goes over all the lines and stops and adds them to parents basically making up a little chain between the important stops
         while (!queue.isEmpty()) {
             Stop current = queue.poll();
             if (current.equals(end)) {
@@ -90,6 +83,7 @@ public class RouteSystem {
             return null;
         }
 
+        //adds the steps of the stops to take to a list
         List<Stop> stops = new ArrayList<>();
         Stop current = end;
         while (!current.equals(start)) {
@@ -102,6 +96,7 @@ public class RouteSystem {
 
         Lines finalRoute = new Lines();
         Line line = null;
+        //goes over the stops and adds them to the final route
         for (int i = 0; i < stops.size() - 1; i++) {
             Stop currentStop = stops.get(i);
             Stop nextStop = stops.get(i + 1);
@@ -109,15 +104,19 @@ public class RouteSystem {
                 for (Line l : graph.get(currentStop.getId())) {
                     if (l.getStops().contains(nextStop)) {
                         Line newLine = (Line) l.clone();
+                        //TODO improve
+                        //if currentstop is higher index then adds them in reverse order
                         if (l.getStops().indexOf(currentStop) > l.getStops().indexOf(nextStop)){
                             for (int j = l.getStops().indexOf(currentStop); j >= l.getStops().indexOf(nextStop); j--) {
                                 newLine.addStop(l.getStops().get(j));
                             }
+                            // else adds them normally
                         } else {
                             for (int j = l.getStops().indexOf(currentStop); j <= l.getStops().indexOf(nextStop); j++) {
                                 newLine.addStop(l.getStops().get(j));
                             }
                         }
+                        //adds each line (step) to the final route
                         finalRoute.addLine(newLine);
                     }
                 }
