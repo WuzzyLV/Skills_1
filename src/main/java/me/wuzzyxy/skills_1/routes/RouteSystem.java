@@ -21,7 +21,7 @@ public class RouteSystem {
     public RouteSystem() {
         try {
             lines = new ObjectMapper().readValue(
-                    new ClassPathResource("json/routes_small.json").getInputStream(),
+                    new ClassPathResource("json/routes.json").getInputStream(),
                     Lines.class
             );
         } catch (Exception e) {

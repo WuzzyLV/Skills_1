@@ -7,7 +7,6 @@
       "stops": [
         {"name": "Valmieras iela", "id": 101},
         {"name": "Ģertrūdes iela", "id": 2},
-        {"name": "Avotu iela", "id": 2},
         {"name": "A.Čaka iela", "id": 3},
         {"name": "K.Barona iela", "id": 4},
         {"name": "Lāčplēša iela", "id": 5},
@@ -75,7 +74,7 @@
     {
       "name": "1",
       "type": "bus",
-      "id" : 1,
+      "id" : 4,
       "stops": [
         {"name": "Ogres iela", "id": 51},
         {"name": "Ģertrūdes iela", "id": 2},
