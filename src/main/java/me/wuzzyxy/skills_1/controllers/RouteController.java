@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
@@ -35,14 +32,35 @@ public class RouteController {
     }
 
     @GetMapping("/route/{start}/{end}")
-    public Lines getRoute(@PathVariable("start") int start, @PathVariable("end") int end) {
+    public ResponseEntity<Object> getRoute(@PathVariable("start") int start, @PathVariable("end") int end) {
         if (start == end) {
-            return new Lines();
+            return new ResponseEntity<>(
+                    new ObjectMapper().createObjectNode()
+                            .put("error", "Start and end are the same")
+                            .toString(),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        Stop startStop = routeSystem.getLines().getStopByID(start);
+        Stop endStop = routeSystem.getLines().getStopByID(end);
+
+        if (startStop == null || endStop == null) {
+            return new ResponseEntity<>(
+                    new ObjectMapper().createObjectNode()
+                            .put("error", "Start or end not found")
+                            .toString(),
+                    HttpStatus.NOT_FOUND
+            );
         }
 
-        return routeSystem.calculateTravel(
-                routeSystem.getLines().getStopByID(start),
-                routeSystem.getLines().getStopByID(end)
-        );
+        return ResponseEntity.ok(routeSystem.calculateTravel(
+                startStop,
+                endStop
+        ));
+    }
+
+    @GetMapping("/raw")
+    public ResponseEntity<Lines> getRaw() {
+        return ResponseEntity.ok(routeSystem.getLines());
     }
 }
